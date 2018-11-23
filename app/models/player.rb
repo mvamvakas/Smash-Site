@@ -3,6 +3,7 @@ class Player
   attr_writer :name, :tag, :main, :secondary, :wins, :losses, :cur_rank, :kills, :deaths
   attr_reader :name, :tag, :main, :secondary, :wins, :losses, :cur_rank, :kills, :deaths
   @@rankings = ['Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond']
+
   def initialize (name, tag, main, secondary)
     @name = name
     @tag = tag
@@ -14,6 +15,7 @@ class Player
     @deaths = 0
     @cur_rank = "Unranked"
   end
+
   def add_game_result(kills, deaths, win)
     if (win == true)
       add_win
@@ -23,6 +25,7 @@ class Player
     @kills = @kills + kills
     @deaths = @deaths + deaths
   end
+
   def add_win()
     @wins = @wins + 1
     if (@wins >= 15)
@@ -37,6 +40,7 @@ class Player
       @cur_rank = @@rankings[4]
     end
   end
+
   def print_player
     puts "Name: " + @name
     puts "GamerTag: " + @tag
@@ -46,6 +50,7 @@ class Player
     puts "Losses: " + @losses.to_s
     puts "Current Rank: " + @cur_rank
   end
+
   def read_into_file
     str = "player_files/" + @tag
     file = File.new(str, 'w')
@@ -60,6 +65,7 @@ class Player
     file.puts @deaths.to_s
     file.close
   end
+
   def read_from_file
     str = "player_files/" + @tag
     if (File.exist?(str) == true)
@@ -75,4 +81,5 @@ class Player
       @deaths = file.gets.to_i
     end
   end
+
 end

@@ -1,4 +1,5 @@
 class MainController < ApplicationController
+
   def site
     $playerArray = Dir["player_files/*"]
     $playerArray.map!{|x| x.remove "player_files/"}
