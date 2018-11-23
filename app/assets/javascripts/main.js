@@ -1,4 +1,30 @@
+$(document).ready(function() {
+  $.ajax({
+    type: "get",
+    dataType:"JSON",
+    url: "/main/get_json_of_players",
+    success: function(data){
+      let string = "";
+      for (let value in data){
+        string = string.concat("<tr>");
+        let json = data[value];
+        console.log(json);
 
+        for (i in json){
+          console.log(json[i]);
+            if (i === "kills"){
+              break;
+            }
+            string = string.concat("<td>");
+            string = string.concat(json[i]);
+            string = string.concat("</td>");
+        }
+        string = string.concat("</tr>");
+      }
+      $('#playerTable').html(string);
+    }
+});
+});
 
 $('#playerSelectOptions li a').on('click', function(){
     consol.log($('#playerSelectButt').val($(this).html()));
@@ -28,26 +54,19 @@ $(document).on('click', "#addPlayerBtnMenu", function(){
 
 
 $(document).on('click', "#addPlayerBtn", function(){
-  let str1 = "michael";
-  let str2 = "Lustymuff";
-  let str3 = "Yoshi";
-  let arr = {str1, str2, str3};
+  let name = document.getElementById("playerNameCreate").value;
+  let tag = document.getElementById("playerTagCreate").value;
+  let main = document.getElementById("playerMainCreate").value;
+  let secondary = document.getElementById("playerSecondaryCreate").value;
+
   let variable = "string" //JSON.stringify(arr);
   $.ajax({
     type: "get",
     //data: {variable},
-    data: {variable},
+    data: {name, tag, main, secondary},
     url: "/main/read_new_to_file",
     success: function(r){
 
     }
-})
-/*.done(function(data) {
-   $.each(data, function (i, item) {
-    $('#city_select').append($('<option>', {
-        value: item.value,
-        text : item.text
-    }));
-   });
- });*/
+  });
 });

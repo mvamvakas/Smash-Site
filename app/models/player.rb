@@ -46,8 +46,8 @@ class Player
     puts "Losses: " + @losses.to_s
     puts "Current Rank: " + @cur_rank
   end
-  def stats_into_file
-    str = @tag + ".txt"
+  def read_into_file
+    str = "player_files/" + @tag
     file = File.new(str, 'w')
     file.puts @name
     file.puts @tag
@@ -60,8 +60,8 @@ class Player
     file.puts @deaths.to_s
     file.close
   end
-  def read_in_file
-    str = @tag + ".txt"
+  def read_from_file
+    str = "player_files/" + @tag
     if (File.exist?(str) == true)
       file = File.new(str, 'r')
       @name = file.gets.chomp

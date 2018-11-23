@@ -19,13 +19,13 @@ stylesheet_link_tag('admin', :media => 'all')
 	    <tr>
 			<th scope="col">Name</th>
 			<th scope="col">Tag</th>
+			<th scope="col">Main</th>
+			<th scope="col">Secondary</th>
 			<th scope="col">Wins</th>
 			<th scope="col">Losses</th>
-			<th scope="col">Games</th>
-			<th scope="col">Main</th>
 		</tr>
     </thead>
-	<tbody>
+	<tbody id="playerTable">
 		<tr>
 			<td>Michael Vamvakas</td>
 			<td>LustyMuffin</td>
@@ -82,13 +82,11 @@ stylesheet_link_tag('admin', :media => 'all')
 <div class='firstdiv' id="addPlayer" style="display:none;" border="1px solid black">
     <h1>Add Player<h1>
 			<div class="font50">
-					<input class = "textBox" type="text" placeholder = "Name" id = "fileNameCreate">
-					<input class = "textBox" type="text" placeholder = "Tag" id = "subNameCreate">
-					<input class = "textBox" type="text" placeholder = "Main" id = "subAddCreate">
+					<input class = "textBox" type="text" placeholder = "Name" id = "playerNameCreate">
+					<input class = "textBox" type="text" placeholder = "Tag" id = "playerTagCreate">
+					<input class = "textBox" type="text" placeholder = "Main" id = "playerMainCreate">
+					<input class = "textBox" type="text" placeholder = "Secondary" id = "playerSecondaryCreate">
 					<button type="button" id="addPlayerBtn" class="btn btn-outline-primary">Add</button>
-					<%=
-					stylesheet_link_tag('admin', :media => 'all')
-					%>
 			</div>
 </div>
 </body>
