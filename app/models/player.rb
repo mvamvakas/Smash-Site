@@ -57,7 +57,7 @@ class Player
     file.puts @losses
     file.puts @cur_rank
     file.puts @kills.to_s
-    file.puts @deaths
+    file.puts @deaths.to_s
     file.close
   end
   def read_in_file

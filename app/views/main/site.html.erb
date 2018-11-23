@@ -46,7 +46,7 @@ stylesheet_link_tag('admin', :media => 'all')
 </table>
 <button type="button" id="playerStatsBtn" class="btn btn-outline-primary">Get Player Stats</button>
 <button type="button" class="btn btn-outline-secondary">Record Game</button>
-<button type="button" id="addPlayerBtn" class="btn btn-outline-success">Add Player</button>
+<button type="button" id="addPlayerBtnMenu" class="btn btn-outline-success">Add Player</button>
 <button type="button" class="btn btn-outline-info">Update Database</button>
 <br>
 <br>
@@ -56,9 +56,9 @@ stylesheet_link_tag('admin', :media => 'all')
         <option value="LustyMuffin">LustyMuffin</option>
 		<option value="TheBlackestMamba">TheBlackestMamba</option>
     </select>
-    <table class="table class1" border="1px solid black">
+    <table class="table font50" border="1px solid black">
 	    <thead class="thead-dark">
-	        <tr>
+	    <tr>
 				<th scope="col">Opponent</th>
 				<th scope="col">Wins</th>
 				<th scope="col">Losses</th>
@@ -80,31 +80,16 @@ stylesheet_link_tag('admin', :media => 'all')
 
 <!-- Change this to fit add character -->
 <div class='firstdiv' id="addPlayer" style="display:none;" border="1px solid black">
-    <h1>Choose a player<h1>
-    <select class="btn btn-outline-primary">
-        <option value="LustyMuffin">LustyMuffin</option>
-		<option value="TheBlackestMamba">TheBlackestMamba</option>
-    </select>
-    <table class="table class1" border="1px solid black">
-	    <thead class="thead-dark">
-	        <tr>
-				<th scope="col">Opponent</th>
-				<th scope="col">Wins</th>
-				<th scope="col">Losses</th>
-				<th scope="col">Kills</th>
-				<th scope="col">Deaths</th>
-			</tr>
-	    </thead>
-		<tbody>
-			<tr>
-				<td>Blackest Mamba</td>
-				<td>100</td>
-				<td>0</td>
-				<td>200</td>
-				<td>0</td>
-			</tr>
-		</tbody>
-    </table>
+    <h1>Add Player<h1>
+			<div class="font50">
+					<input class = "textBox" type="text" placeholder = "Name" id = "fileNameCreate">
+					<input class = "textBox" type="text" placeholder = "Tag" id = "subNameCreate">
+					<input class = "textBox" type="text" placeholder = "Main" id = "subAddCreate">
+					<button type="button" id="addPlayerBtn" class="btn btn-outline-primary">Add</button>
+					<%=
+					stylesheet_link_tag('admin', :media => 'all')
+					%>
+			</div>
 </div>
 </body>
 </html>
