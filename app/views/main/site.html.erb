@@ -33,11 +33,9 @@
 		<br>
 		<div class='firstdiv' id="playerStats" style="display:none;" border="1px solid black">
         <h1>Choose a player<h1>
-        <select class="btn btn-outline-primary">
-            <option value="LustyMuffin">LustyMuffin</option>
-		        <option value="TheBlackestMamba">TheBlackestMamba</option>
+        <select id="playerStatsSelect" class="btn btn-outline-primary">
         </select>
-        <table class="table font50" border="1px solid black">
+        <table class="table font50" border="1px solid black" style="margin: 2px;">
 	          <thead class="thead-dark">
 			          <tr>
 						    <th scope="col">Opponent</th>
@@ -47,14 +45,7 @@
 								<th scope="col">Deaths</th>
 					      </tr>
 	          </thead>
-		        <tbody>
-			          <tr>
-								<td>Blackest Mamba</td>
-								<td>100</td>
-								<td>0</td>
-								<td>200</td>
-								<td>0</td>
-							  </tr>
+		        <tbody id="playerSelectTableBody" class="font75">
 						</tbody>
         </table>
     </div>

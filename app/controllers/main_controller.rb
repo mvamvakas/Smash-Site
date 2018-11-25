@@ -30,4 +30,8 @@ class MainController < ApplicationController
     render json: $playerHash
   end
 
+  def get_json_of_player
+    render json: $playerHash[params[:tag]]
+  end
+
 end

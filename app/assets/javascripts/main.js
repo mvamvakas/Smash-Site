@@ -2,9 +2,11 @@ $(document).ready(function() {
     loadPlayerTable();
 });
 
+/*
 $('#playerSelectOptions li a').on('click', function(){
     consol.log($('#playerSelectButt').val($(this).html()));
 });
+*/
 
 $(document).on('click', "#playerStatsBtn", function(){
     let x = document.getElementById("playerStats");
@@ -16,6 +18,7 @@ $(document).on('click', "#playerStatsBtn", function(){
 	  else {
 		    x.style.display = "none";
 	  }
+    loadPlayerStatsTable();
 });
 
 $(document).on('click', "#addPlayerBtnMenu", function(){
@@ -30,7 +33,6 @@ $(document).on('click', "#addPlayerBtnMenu", function(){
 	  }
 });
 
-//todo: figure out why ajax is not going to success or fail functions
 $(document).on('click', "#addPlayerBtn", function(){
     let name = document.getElementById("playerNameCreate").value;
     let tag = document.getElementById("playerTagCreate").value;
@@ -46,6 +48,10 @@ $(document).on('click', "#addPlayerBtn", function(){
             loadPlayerTable();
         }
     });
+});
+
+$(document).on('change', "#playerStatsSelect", function(){
+    loadPlayerStatsTable();
 });
 
 function loadPlayerTable(){
@@ -68,7 +74,42 @@ function loadPlayerTable(){
                 }
                 string = string.concat("</tr>");
             }
-        $('#playerTable').html(string);
+            $('#playerTable').html(string);
+        }
+    });
+
+    $.ajax({
+        type: "get",
+        dataType:"JSON",
+        url: "/main/get_player_names",
+        success: function(data){
+            let x = document.getElementById("playerStatsSelect");
+            for (let i in data){
+                let option = document.createElement("option");
+                option.text = data[i];
+                x.add(option);
+            }
+        }
+    });
+}
+
+function loadPlayerStatsTable(){
+    let tag = document.getElementById("playerStatsSelect").value;
+    $.ajax({
+        type: "get",
+        data: {tag},
+        dataType:"JSON",
+        url: "/main/get_json_of_player",
+        success: function(data){
+            let string = "";
+            string = string.concat("<tr>");
+            for (i in data){
+                string = string.concat("<td>");
+                string = string.concat(data[i]);
+                string = string.concat("</td>");
+            }
+            string = string.concat("</tr>");
+            $('#playerSelectTableBody').html(string);
         }
     });
 }
