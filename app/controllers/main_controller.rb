@@ -1,5 +1,4 @@
 class MainController < ApplicationController
-
   def site
     $playerArray = Dir["player_files/*"]
     $playerArray.map!{|x| x.remove "player_files/"}
@@ -17,7 +16,10 @@ class MainController < ApplicationController
     if !File.exist?(str)
       player = Player.new(params[:name], params[:tag], params[:main], params[:secondary])
       player.read_into_file
+      $playerHash[player.tag] = player
+      $playerArray.push(player.tag)
     end
+    render json: $playerArray
   end
 
   def get_player_names

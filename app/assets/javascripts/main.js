@@ -38,12 +38,11 @@ $(document).on('click', "#addPlayerBtn", function(){
     let secondary = document.getElementById("playerSecondaryCreate").value;
     $.ajax({
         type: "get",
+        dataType: "JSON",
+        async: "false",
         data: {name, tag, main, secondary},
         url: "/main/read_new_to_file",
-        success: function(result){
-            loadPlayerTable();
-        },
-        error: function(data) {
+        success: function(data){
             loadPlayerTable();
         }
     });
