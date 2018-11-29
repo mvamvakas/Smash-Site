@@ -1,12 +1,22 @@
 $(document).ready(function() {
     loadPlayerTable();
-});
+    $.ajax({
+        type: "get",
+        dataType:"JSON",
+        url: "/main/get_player_names",
+        success: function(data){
+            let x = document.getElementById("playerStatsSelect");
+            for (let i in data){
 
-/*
-$('#playerSelectOptions li a').on('click', function(){
-    consol.log($('#playerSelectButt').val($(this).html()));
+            }
+            for (let i in data){
+                let option = document.createElement("option");
+                option.text = data[i];
+                x.add(option);
+            }
+        }
+    });
 });
-*/
 
 $(document).on('click', "#playerStatsBtn", function(){
     let x = document.getElementById("playerStats");
@@ -34,20 +44,35 @@ $(document).on('click', "#addPlayerBtnMenu", function(){
 });
 
 $(document).on('click', "#addPlayerBtn", function(){
-    let name = document.getElementById("playerNameCreate").value;
-    let tag = document.getElementById("playerTagCreate").value;
-    let main = document.getElementById("playerMainCreate").value;
-    let secondary = document.getElementById("playerSecondaryCreate").value;
-    $.ajax({
-        type: "get",
-        dataType: "JSON",
-        async: "false",
-        data: {name, tag, main, secondary},
-        url: "/main/read_new_to_file",
-        success: function(data){
-            loadPlayerTable();
-        }
-    });
+    $("#myModal").modal();
+});
+
+$(document).on('click', "#login", function(){
+    let user = document.getElementById("usrname").value;
+    let psw = document.getElementById("psw").value;
+    if (user === "mvamvaka" && psw === "Inf0rmatics"){
+        let name = document.getElementById("playerNameCreate").value;
+        let tag = document.getElementById("playerTagCreate").value;
+        let main = document.getElementById("playerMainCreate").value;
+        let secondary = document.getElementById("playerSecondaryCreate").value;
+        $.ajax({
+            type: "get",
+            dataType: "JSON",
+            async: "false",
+            data: {name, tag, main, secondary},
+            url: "/main/read_new_to_file",
+            success: function(data){
+                let x = document.getElementById("playerStatsSelect");
+                let option = document.createElement("option");
+                option.text = tag;
+                x.add(option);
+                loadPlayerTable();
+            }
+        });
+    }
+    else {
+        alert("Login Failed");
+    }
 });
 
 $(document).on('change', "#playerStatsSelect", function(){
@@ -75,20 +100,6 @@ function loadPlayerTable(){
                 string = string.concat("</tr>");
             }
             $('#playerTable').html(string);
-        }
-    });
-
-    $.ajax({
-        type: "get",
-        dataType:"JSON",
-        url: "/main/get_player_names",
-        success: function(data){
-            let x = document.getElementById("playerStatsSelect");
-            for (let i in data){
-                let option = document.createElement("option");
-                option.text = data[i];
-                x.add(option);
-            }
         }
     });
 }
