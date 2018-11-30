@@ -2,19 +2,21 @@ class MainController < ApplicationController
   def site
     $playerArray = Dir["player_files/*"]
     $playerArray.map!{|x| x.remove "player_files/"}
+    tempHash = {}
     $playerHash = {}
     $playerArray.each{|tag|
       #puts tag
-      player = Player.new(0, tag, 0, 0)
+      player = Player.new(0, tag, 0, 0, 0)
       player.read_from_file
-      $playerHash[tag] = player
+      tempHash[tag] = player
     }
+    $playerHash = tempHash.sort_by{|key, value| value.wins}.reverse.to_h
   end
 
   def read_new_to_file()
     str = "player_files/" + params[:tag]
     if !File.exist?(str)
-      player = Player.new(params[:name], params[:tag], params[:main], params[:secondary])
+      player = Player.new(params[:name], params[:tag], params[:friendCode], params[:main], params[:secondary])
       player.read_into_file
       $playerHash[player.tag] = player
       $playerArray.push(player.tag)

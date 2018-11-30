@@ -1,12 +1,13 @@
 class Player
-  attr_accessor :name, :tag, :main, :secondary, :wins, :losses, :cur_rank, :kills, :deaths
-  attr_writer :name, :tag, :main, :secondary, :wins, :losses, :cur_rank, :kills, :deaths
-  attr_reader :name, :tag, :main, :secondary, :wins, :losses, :cur_rank, :kills, :deaths
+  attr_accessor :name, :tag, :friend_code, :main, :secondary, :wins, :losses, :cur_rank, :kills, :deaths
+  attr_writer :name, :tag, :friend_code, :main, :secondary, :wins, :losses, :cur_rank, :kills, :deaths
+  attr_reader :name, :tag, :friend_code, :main, :secondary, :wins, :losses, :cur_rank, :kills, :deaths
   @@rankings = ['Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond']
 
-  def initialize (name, tag, main, secondary)
+  def initialize (name, tag, friend_code, main, secondary)
     @name = name
     @tag = tag
+    @friend_code = friend_code
     @main = main
     @secondary = secondary
     @wins = 0
@@ -56,6 +57,7 @@ class Player
     file = File.new(str, 'w')
     file.puts @name
     file.puts @tag
+    file.puts @friend_code
     file.puts @main
     file.puts @secondary
     file.puts @wins
@@ -72,6 +74,7 @@ class Player
       file = File.new(str, 'r')
       @name = file.gets.chomp
       @tag = file.gets.chomp
+      @friend_code = file.gets.chomp
       @main = file.gets.chomp
       @secondary = file.gets.chomp
       @wins = file.gets.to_i
