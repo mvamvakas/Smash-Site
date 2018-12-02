@@ -25,6 +25,7 @@ class Player
     end
     @kills = @kills + kills
     @deaths = @deaths + deaths
+    read_into_file()
   end
 
   def add_win()

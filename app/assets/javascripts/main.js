@@ -101,6 +101,7 @@ $(document).on('click', "#record", function(){
     }
     else if (kills == deaths){
         console.log("Kills and deaths can't be the same");
+        return;
     }
     $.ajax({
         type: "get",
@@ -109,7 +110,7 @@ $(document).on('click', "#record", function(){
         data: {tag, kills, deaths, win},
         url: "/main/add_match",
         success: function(data){
-            //loadPlayerTable();
+            console.log("Game Successfully recorded")
         }
     });
 });
