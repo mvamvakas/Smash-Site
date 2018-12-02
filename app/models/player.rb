@@ -18,7 +18,7 @@ class Player
   end
 
   def add_game_result(kills, deaths, win)
-    if (win == true)
+    if (win == 1)
       add_win
     else
       @losses = @losses + 1

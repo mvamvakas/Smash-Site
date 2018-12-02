@@ -45,7 +45,7 @@
     <table class="table" border="1px solid black">
 	      <thead class="thead-dark">
 	          <tr>
-							<!-- Change to name, tag, rank, friend code -->
+						<!-- Change to name, tag, rank, friend code -->
 						<th scope="col">Rank</th>
 			      <th scope="col">Name</th>
 						<th scope="col">Tag</th>
@@ -56,7 +56,7 @@
 	      </tbody>
     </table>
 		<button type="button" id="playerStatsBtn" class="btn btn-outline-primary">Get Player Stats</button>
-		<button type="button" class="btn btn-outline-secondary">Record Game</button>
+		<button type="button" id="recordGameBtn" class="btn btn-outline-secondary">Record Game</button>
 		<button type="button" id="addPlayerBtnMenu" class="btn btn-outline-success">Add Player</button>
 		<button type="button" class="btn btn-outline-info">Update Database</button>
 		<br>
@@ -70,6 +70,7 @@
 								<tr>
 								<th scope="col">Name</th>
 								<th scope="col">Tag</th>
+                <th scope="col">Friend Code</th>
 								<th scope="col">Main</th>
 								<th scope="col">Secondary</th>
 								<th scope="col">Wins</th>
@@ -82,6 +83,36 @@
 		        <tbody id="playerSelectTableBody" class="font75">
 						</tbody>
         </table>
+    </div>
+
+    <div class='firstdiv' id="recordGame" style="display:none;" border="1px solid black">
+        <h1>Record Game<h1>
+        <div class="font50">
+            <br>
+            Player =
+            <select id="playerRecordSelect" class="btn btn-outline-primary"></select>
+            Kills =
+            <select id="numKills" class="btn btn-outline-secondary">>
+                <option value="6">6</option>
+                <option value="5">5</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1</option>
+                <option value="0">0</option>
+            </select>
+            Deaths =
+            <select id="numDeaths" class="btn btn-outline-success">>
+                <option value="6">6</option>
+                <option value="5">5</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1</option>
+                <option value="0">0</option>
+            </select>
+            <button type="button" id="record" class="btn btn-outline-info">Record</button>
+        </div>
     </div>
 
 		<!-- Change this to fit add character -->

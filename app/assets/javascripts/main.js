@@ -8,13 +8,17 @@ $(document).ready(function() {
         url: "/main/get_player_names",
         success: function(data){
             let x = document.getElementById("playerStatsSelect");
+            let y = document.getElementById("playerRecordSelect");
             for (let i in data){
 
             }
             for (let i in data){
                 let option = document.createElement("option");
+                let option1 = document.createElement("option");
                 option.text = data[i];
+                option1.text = data[i];
                 x.add(option);
+                y.add(option1);
             }
         }
     });
@@ -24,9 +28,11 @@ $(document).ready(function() {
 $(document).on('click', "#playerStatsBtn", function(){
     let x = document.getElementById("playerStats");
     let y = document.getElementById("addPlayer");
+    let z = document.getElementById("recordGame");
     if (x.style.display === "none"){
 		    x.style.display = "block";
         y.style.display = "none";
+        z.style.display = "none";
 	  }
 	  else {
 		    x.style.display = "none";
@@ -37,9 +43,25 @@ $(document).on('click', "#playerStatsBtn", function(){
 $(document).on('click', "#addPlayerBtnMenu", function(){
     let x = document.getElementById("addPlayer");
     let y = document.getElementById("playerStats");
+    let z = document.getElementById("recordGame");
 	  if (x.style.display === "none"){
 		    x.style.display = "block";
         y.style.display = "none";
+        z.style.display = "none";
+	  }
+	  else {
+		    x.style.display = "none";
+	  }
+});
+
+$(document).on('click', "#recordGameBtn", function(){
+    let x = document.getElementById("recordGame");
+    let y = document.getElementById("playerStats");
+    let z = document.getElementById("addPlayer");
+	  if (x.style.display === "none"){
+		    x.style.display = "block";
+        y.style.display = "none";
+        z.style.display = "none";
 	  }
 	  else {
 		    x.style.display = "none";
@@ -68,6 +90,30 @@ $(document).on('click', "#login", function(){
     }
 });
 
+$(document).on('click', "#record", function(){
+    let tag = document.getElementById("playerRecordSelect").value;
+    let kills = parseInt(document.getElementById("numKills").value, 10);
+    let deaths = parseInt(document.getElementById("numDeaths").value, 10);
+    console.log(kills + deaths);
+    let win = 0;
+    if (kills > deaths){
+        win = 1;
+    }
+    else if (kills == deaths){
+        console.log("Kills and deaths can't be the same");
+    }
+    $.ajax({
+        type: "get",
+        dataType: "JSON",
+        async: "false",
+        data: {tag, kills, deaths, win},
+        url: "/main/add_match",
+        success: function(data){
+            //loadPlayerTable();
+        }
+    });
+});
+
 function addPlayer(){
     let name = document.getElementById("playerNameCreate").value;
     let tag = document.getElementById("playerTagCreate").value;
@@ -82,9 +128,13 @@ function addPlayer(){
         url: "/main/read_new_to_file",
         success: function(data){
             let x = document.getElementById("playerStatsSelect");
+            let y = document.getElementById("playerRecordSelect");
             let option = document.createElement("option");
+            let option1 = document.createElement("option");
             option.text = tag;
+            option1.text = tag;
             x.add(option);
+            y.add(option1);
             loadPlayerTable();
         }
     });

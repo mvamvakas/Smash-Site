@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     get :get_player_names, on: :collection
     get :get_json_of_players, on: :collection
     get :get_json_of_player, on: :collection
+    get :add_match, on: :collection
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

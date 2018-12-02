@@ -13,6 +13,11 @@ class MainController < ApplicationController
     $playerHash = tempHash.sort_by{|key, value| value.wins}.reverse.to_h
   end
 
+  def add_match()
+    player = $playerHash[params[:tag]]
+    player.add_game_result(params[:kills].to_i, params[:deaths].to_i, params[:win].to_i)
+  end
+
   def read_new_to_file()
     str = "player_files/" + params[:tag]
     if !File.exist?(str)
