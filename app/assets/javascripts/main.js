@@ -1,4 +1,4 @@
-var isLoggedIn = 1;
+var isLoggedIn = 0;
 
 $(document).ready(function() {
     loadPlayerTable();
@@ -70,7 +70,6 @@ $(document).on('click', "#recordGameBtn", function(){
 
 $(document).on('click', "#addPlayerBtn", function(){
     if (isLoggedIn == 1){
-        console.log("HM");
         addPlayer();
     }
     else {
@@ -81,7 +80,7 @@ $(document).on('click', "#addPlayerBtn", function(){
 $(document).on('click', "#login", function(){
     let user = document.getElementById("usrname").value;
     let psw = document.getElementById("psw").value;
-    if (user === "mvamvaka" && psw === "Inf0rmatics"){
+    if (user === "smash_admin" && psw === "smash_admin"){
         isLoggedIn = 1;
         addPlayer();
     }
